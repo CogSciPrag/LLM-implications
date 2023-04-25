@@ -11,11 +11,15 @@ In this introductory session we discuss some recent examples to start the discus
 First, to get some impressions of capabilities of state-of-the-art LLMs, let's take a look at the video from the live demo of the  GPT-4 release, the latest closed-source model developed by OpenAI.
 
 * [coding a Discord Python bot](https://www.youtube.com/live/outcGtbnMuQ?feature=share&t=382)
-* [explaining an image](https://www.youtube.com/live/outcGtbnMuQ?feature=share&t=953)
-* [coding a website from napkin drawing](https://www.youtube.com/live/outcGtbnMuQ?feature=share&t=1048)
 * ['TaxGPT'](https://www.youtube.com/live/outcGtbnMuQ?feature=share&t=1144)
+* [additional example] [explaining an image](https://www.youtube.com/live/outcGtbnMuQ?feature=share&t=953)
+* [additional example] [coding a website from napkin drawing](https://www.youtube.com/live/outcGtbnMuQ?feature=share&t=1048)
 
 (Please note that examples for such demonstrations are likely to be prepared in advance and, therefore, might be cherry-picked. Therefore, it is difficult to say how the model will perform on other inputs -- we will have to see for ourselves.)
+
+### Slides
+
+Everything else discussed in the session can be found in the [slides][1].
 
 ### Where to try LLMs
 
@@ -41,3 +45,6 @@ The following is *additional* material, in case you would like to recap various 
 * [High level introduction to the transformers architecture in general](https://youtu.be/SZorAJ4I-sA)
 * [Vaswani et al (2017): Attention is all you need. A walk through of one of the original papers on the transformers architecture](https://youtu.be/iDulhoQ2pro)
 * [Introduction to the Huggingface library](https://www.youtube.com/watch?v=QEaBAZQCtwE)
+
+
+[1]:{{ site.baseurl }}/slides/01-introduction.pdf
