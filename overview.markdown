@@ -38,11 +38,11 @@ As discussed in the slides for session 1, we suggest final projects that can rou
   * building: 
     * intermediate presentation 
     * submit repository (or some other format of code sharing)  
-    * submit 2-3 page project report
+    * submit 1-2 page project report
   * testing:
     * intermediate presentation
     * submit repository (or some other format of sharing materials used for the tests)
-    * submit 2-3 page project report
+    * submit 1-2 page project report
   * creating: 
     * intermediate presentation
     * submit contents roughly corresponding to one in-depth topic discussion / group member 
