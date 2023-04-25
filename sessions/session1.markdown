@@ -23,7 +23,7 @@ First, to get some impressions of capabilities of state-of-the-art LLMs, let's t
 
 ### Where to try LLMs
 
-Below you can find links where you could try cutting-edge LLMs yourself! Please note that accessing the fanciest models requires creating accounts. The use of some models by OpenAI might even require to pay. Using the OpenAI API for accessing the models also requires to pay once the free credits one gets upon signing up are used up. Please note that **you are note expected to pay** for using these models in this class. Please contact us if you do have any issues testing models that you would like to use.
+Below you can find links where you could try cutting-edge LLMs yourself! Please note that accessing the fanciest models requires creating accounts. The use of some models by OpenAI might even require to pay. Using the OpenAI API for accessing the models also requires to pay once the free credits one gets upon signing up are used up. Please note that **you are not expected to pay** for using these models in this class. Please contact us if you do have any issues testing models that you would like to use.
 
 * [ChatGPT](https://chat.openai.com/): This chat model provided by OpenAI requires an account, but allows you to play around for free using the nice graphical chat interface!
 * [OpenAssistant](https://open-assistant.io/chat): This is an open source alternative to OpenAI's GPT based models, based on the foundation model LLaMA provided by Meta AI. Using it requires a free account and it also offers a nice graphical chat interface!
