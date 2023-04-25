@@ -17,6 +17,10 @@ First, to get some impressions of capabilities of state-of-the-art LLMs, let's t
 
 (Please note that examples for such demonstrations are likely to be prepared in advance and, therefore, might be cherry-picked. Therefore, it is difficult to say how the model will perform on other inputs -- we will have to see for ourselves.)
 
+<object data="slides/01-introduction.pdf" type="application/pdf" width="100%" height="500px">
+      <p>Unable to display PDF file. <a href="slides/01-introduction.pdf">Download</a> instead.</p>
+    </object>
+
 ### Where to try LLMs
 
 Below you can find links where you could try cutting-edge LLMs yourself! Please note that accessing the fanciest models requires creating accounts. The use of some models by OpenAI might even require to pay. Using the OpenAI API for accessing the models also requires to pay once the free credits one gets upon signing up are used up. Please note that **you are note expected to pay** for using these models in this class. Please contact us if you do have any issues testing models that you would like to use.
