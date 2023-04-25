@@ -8,18 +8,27 @@ permalink: /materials/session1
 
 In this introductory session we discuss some recent examples to start the discussion of LLMs.
 
-TBD.
+First, to get some impressions of capabilities of state-of-the-art LLMs, let's take a look at the video from the live demo of the  GPT-4 release, the latest closed-source model developed by OpenAI.
+
+* [coding a Discord Python bot](https://www.youtube.com/live/outcGtbnMuQ?feature=share&t=382)
+* [explaining an image](https://www.youtube.com/live/outcGtbnMuQ?feature=share&t=953)
+* [coding a website from napkin drawing](https://www.youtube.com/live/outcGtbnMuQ?feature=share&t=1048)
+* ['TaxGPT'](https://www.youtube.com/live/outcGtbnMuQ?feature=share&t=1144)
+
+(Please note that examples for such demonstrations are likely to be prepared in advance and, therefore, might be cherry-picked. Therefore, it is difficult to say how the model will perform on other inputs -- we will have to see for ourselves.)
 
 ### Where to try LLMs
 
-Below you can find links where you could try cutting-edge LLMs yourself! Please note that accessing the fanciest models requires creating accounts. The use of some models by OpenAI might even require to pay once the free credits one gets upon signing up are used up. Please note that **you are note expected to pay** for using these models in this class. Please contact us if you do not have any issues testing models that you would like to use.
+Below you can find links where you could try cutting-edge LLMs yourself! Please note that accessing the fanciest models requires creating accounts. The use of some models by OpenAI might even require to pay. Using the OpenAI API for accessing the models also requires to pay once the free credits one gets upon signing up are used up. Please note that **you are note expected to pay** for using these models in this class. Please contact us if you do have any issues testing models that you would like to use.
 
 * [ChatGPT](https://chat.openai.com/): This chat model provided by OpenAI requires an account, but allows you to play around for free using the nice graphical chat interface!
 * [OpenAssistant](https://open-assistant.io/chat): This is an open source alternative to OpenAI's GPT based models, based on the foundation model LLaMA provided by Meta AI. Using it requires a free account and it also offers a nice graphical chat interface!
 * [GPT-2](https://huggingface.co/gpt2-xl): This is the most advanced member of the GPT family that was open sourced by OpenAI. You can try it out via the graphical interface hosted as an inference playground by the framework Huggingface.
-* [FLAN-T5](https://huggingface.co/google/flan-t5-xxl): Huggingface hosts a try-out playground for a large variety of other 'more classical' open-source models like BERT and T5. This is a like to trying out a fine-tuned version of T5, called FLAN-T5. It is also a transformer model which was fune-tuned on a variety of tasks.
-* [advanced] [OpenAI API](https://platform.openai.com/docs/api-reference/introduction): If you are familiar with getting your hands dirty with LMs and would liek to generate some text from the latest GPT models, feel free to have a look at the OpenAI API which allows you to generate predictions from the latest non open-source models. **WARNING:** you have to pay for using their API (either with the $20 free credit you receive when signing up or via your saved payment method), so please pay attention to how many tokens you generate and note that this at your own responsibility.
-* [may be unavailable] [Alpaca](https://alpaca-ai.ngrok.io/): This is a fine-tuned version of the LLaMA foundation model provided by researchers from Stanford. Unfortunately, their grpahical interface for trying the model tends to be unavailable. For general information about the model, check out [this](https://crfm.stanford.edu/2023/03/13/alpaca.html) page.
+* [FLAN-T5](https://huggingface.co/google/flan-t5-xxl): Huggingface hosts a try-out playground for a large variety of other 'more classical' open-source models like BERT and T5. This is a link to trying out a fine-tuned version of T5, called FLAN-T5. It is also a transformer model (like GPT) which was fune-tuned on a variety of tasks.
+* [advanced] [OpenAI API](https://platform.openai.com/docs/api-reference/introduction): If you are familiar with getting your hands dirty with LMs and would like to generate some text from the latest GPT models, feel free to have a look at the OpenAI API which allows you to generate predictions from the latest non open-source models. **WARNING:** you have to pay for using their API (either with the $20 free credit you receive when signing up or via your saved payment method), so please pay attention to how many tokens you generate and note that this is your own responsibility.
+* [may be unavailable] [Alpaca](https://alpaca-ai.ngrok.io/): This is a fine-tuned version of the LLaMA foundation model provided by researchers from Stanford. Unfortunately, their graphical interface for trying the model tends to be unavailable. For general information about the model, check out [this](https://crfm.stanford.edu/2023/03/13/alpaca.html) page.
+
+There are several other big players (e.g., PALM by Google) in the field of LLMs which are not available for public testing or don't have graphical test interfaces. We will discuss currently main models in the next sessions in more detail.
 
 ### Additional materials to prepare for session 2 (optional)
 
@@ -30,5 +39,5 @@ The following is *additional* material, in case you would like to recap various 
 * [Introduction to neural networks](https://youtu.be/aircAruvnKk)
 * [PyTorch for deep learning, a brief introduction (30 min)](https://youtu.be/IC0_FRiX-sw)
 * [High level introduction to the transformers architecture in general](https://youtu.be/SZorAJ4I-sA)
-* [Vaswani et al (2017): Attention is all you need. walk through of one of the original papers on the transformers architecture](https://youtu.be/iDulhoQ2pro)
+* [Vaswani et al (2017): Attention is all you need. A walk through of one of the original papers on the transformers architecture](https://youtu.be/iDulhoQ2pro)
 * [Introduction to the Huggingface library](https://www.youtube.com/watch?v=QEaBAZQCtwE)
