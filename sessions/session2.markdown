@@ -4,6 +4,10 @@ title: Session 2
 permalink: /materials/session2
 ---
 
+<div align="center">
+    <img src="../sessions/assets/session2.png" width="50%">
+</div>
+
 ### Introduction
 
 In this session, we provide an overview of the fundamental concepts behind **core language models**. That is, we take a look at training language models to predict the next word, also called *pre-training* -- the step that is taken before pre-trained language models undergo further fine-tuning to become more helpful and harmless assistants (like, e.g., ChatGPT). By taking a tour over some technical details of language model mechanics and how they are evaluated in the literature, the main learning goals we are aiming for in this session are: 
@@ -20,12 +24,15 @@ TBD.
 
 ### Hands-on exercises
 
-Below, you can find code for trying out pretrained models via the Huggingface library yourself. Additionally, there are snippets for looking at the effect of a critical moving part of LMs -- the decoding scheme -- in action. 
+Below, you can find code for trying out pretrained models via the [Huggingface library](https://huggingface.co/) yourself. Additionally, there are snippets for looking at the effect of a critical moving part of LMs -- the decoding scheme -- in action.
 
 #### Running the code
 
-Colab / some prose.
+In order to explore, you don't have to write a lot of code by yourself -- you can use many handy functions allowing you to download models, tokenize text (i.e., map natural language (sub)words to numbers which a machine can use for computations), sample predictions of the pretrained models. To try different decoding schemes, you will only have to take a look at the documentation and change some parameters of the functions. So even if you have never written code for using LLMs before we encourage you to take on the challenge and try running the code and doing the exercises below.
 
+We strongly encourage you to use Colab (a Jupyter server hosted by Google) to create a Jupyter notebook and paste the code below into it. The only requirement fot that is a Google account. You can find instructions on how to use Colab notebooks [here](https://colab.research.google.com/).
+
+If you are a more advanced programmer and really want to run the code locally on your machine, we strongly encourage you to create an environment (e.g., with Conda) before you install any dependencies, and please keep in mind that pretrained language model weights might take up quite a bit of space on your hard drive or might require high RAM for prediction.
 
 #### Generating predictions from models
 
