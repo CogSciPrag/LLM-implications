@@ -7,6 +7,8 @@ permalink: /overview/
 
 You can find the main information about the course here.
 
+The course is a seminar worth 6 ECTS by default. Note that the sessions are split into a **12:00 s.t.--13:30** block, a lunch break **13:30--14:15**, and the second half of the session **14:15--15:45**.  
+
 ### Tentative schedule
 
 Below is the tentative schedule for the class. It might be subject to slight adjustments based on course pace and potential new developments of the field.
