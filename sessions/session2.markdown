@@ -38,8 +38,6 @@ If you are a more advanced programmer and really want to run the code locally on
 
 Below is the code for loading the pretrained GPT-2 model and generating some sentence completions with it.
 
-Exercise: Load BERT and T5. Different languages. Different tasks. 
-
 ```python
 # load packages
 from transformers import AutoTokenizer, AutoModelForCausalLM
@@ -69,9 +67,163 @@ output_text = tokenizer.batch_decode(
     skip_special_tokens=True,
 )
 
+# display results
 print("Predicted text:\n\n ", output_text)
 ```
 
+**Exercise**
+
+Besides core language models which generate text continuations (i.e., simply predict next tokens), Huggingface offers a variety of models fine-tuned for different other tasks. These often come with different model *heads*. 
+
+1. Create a few example inputs for GPT-2 in a different language than English. Does the quality of the prediction intuitively match the quality of English predictions?
+2. Load a version of BERT fine-tuned for question answering by adapting the code above (the Huggingface model ID is 'deepset/bert-base-cased-squad2') and create or find three examples of contexts and questions which could be answered based on information in context. What does the task-specific head for this model do?
+
 #### Comparing decoding schemes
 
-TBD.
+One import aspect which determines the quality of the text produced by language models is the *decoding strategy*. The code below shows how to use several popular decoding schemes with GPT-2. Of course, they can also be applied to other generative language models. 
+It is taken from [this](https://michael-franke.github.io/npNLG/06-LSTMs/06d-decoding-GPT2.html) chapter of Michael's webbook on natural language generation. 
+
+**Exercise**
+
+1. Compare the resulting output for the input above based on different decoding schemes. Do you observe differences? Why do you think this happens? What are possible disadvantages of the different decoding schemes? 
+
+```python
+# helper function for decoding the prediction and printing
+def pretty_print(s):
+    print("Output:\n" + 100 * '-')
+    print(tokenizer.batch_decode(
+        s, 
+        skip_special_tokens=True)
+    )
+
+# use function 'model.generate' from `transformer` package to sample by
+greedy_output = model.generate(
+    text_encoded,     # context to continue
+    max_length=50,    # return maximally 50 words (including the input given)
+)
+
+pretty_print(greedy_output)
+
+# In a pure sampling approach, we just sample each next word with exactly the probability assigned to it by the LM.
+sample_output = model.generate(
+    text_encoded,        # context to continue
+    do_sample=True,   # use sampling (not beam search (see below))
+    max_length=50,    # return maximally 50 words (including the input given)
+    top_k=0           # just sample one word
+)
+
+pretty_print(sample_output)
+
+# In simplified terms, beam search is a parallel search procedure that keeps a number of path probabilities open at each choice point, dropping the least likely as we go along.
+beam_output = model.generate(
+    text_encoded, 
+    max_length=50, 
+    num_beams=5, 
+    early_stopping=True
+) 
+
+pretty_print(beam_output)
+```
+
+#### Loading evaluations
+
+In the lecture we discussed different metrics and benchmarks for evaluating language models. Below you can find the code for loading a Wikipedia-based test dataset frequently used to compute the test performance of models. 
+
+**Exercise**
+
+The code below provides the negative log likelihood of the first 50 tokens in the dataset under GPT-2. Based on the NLL, compute  the perplexity of this sequence under GPT-2.
+
+```python
+# import Huggingface package managing open source datasets
+from datasets import load_dataset
+
+test = load_dataset("wikitext", split="test")
+encodings = tokenizer(
+    "\n\n".join(test["text"]), 
+    return_tensors="pt",
+).input_ids
+
+input_tokens = encodings[:,10:50]
+
+pretty_print(input_tokens)
+
+output = model(input_tokens, labels = input_tokens)
+print("Average NLL for wikipedia chunk", output.loss.item())
+
+### your code for computing the perplexity goes here ###
+# perplexity = 
+```
+
+When evaluating generated text for tasks like translation or summarization, metrics like BLEU-n are employed. We will use the T5 model which was also trained to translate between English, German and French. 
+The snippet below is based on [this](https://huggingface.co/docs/transformers/tasks/translation) tutorial.
+
+**Exercise**
+ 
+1. Use the code below to compute the BLEU score for the provided English sentence into German based on the prediction by the model and the provided gold standard.  
+2. Try to paraphrase the gold standard translated sentence slightly and compute the BLEU score again. What happens to the score and why?
+3. Find some additional examples of translations between different languages [here](https://huggingface.co/datasets/wmt14) or come up with some examples sentences yourself (e.g., a sentence in your native language and its English translation).
+
+```python
+# import the implementation of the bleu score computation
+from torchtext.data.metrics import bleu_score
+# load model and tokenizer
+from transformers import T5Tokenizer, T5ForConditionalGeneration
+import torch
+
+tokenizer_t5 = T5Tokenizer.from_pretrained("t5-small")
+model_t5 = T5ForConditionalGeneration.from_pretrained("t5-small")
+
+# define example sentences for translating from English to German
+text_en = "All of the others were of a different opinion."
+text_de = "Alle anderen waren anderer Meinung."
+# define task 
+prefix = "translate English to German: "
+
+# define helper function taking prediction and gold standard
+def compute_bleu(prediction, target, n):
+    """
+    Parameters:
+    ----------
+    prediction: str
+        Predicted translation.
+    target: str
+        Gold standard translation.
+    n: int
+        n-gram over which to compute BLEU.
+    Returns:
+    -------
+    score: float
+        BLEU-n score.
+    """
+    score = bleu_score(
+        [prediction.split()], 
+        [ target.split()], 
+        max_n=n, 
+        weights = [1/n] * n,
+    )
+    return score 
+
+# encode the source and the target sentences
+encoding_en = tokenizer_t5(
+    [prefix + text_en],
+    return_tensors="pt",
+).input_ids
+# we don't need the task prefix before the target
+encoding_de = tokenizer_t5(
+    [text_de],
+    return_tensors="pt",
+).input_ids
+
+# predict with model
+predicted_de = model_t5(encoding_en)
+
+# decode the prediction
+predicted_decoded_de = tokenizer_t5.batch_decode(
+    predicted_de,
+    skip_special_tokens=True,
+)
+
+# compute BLEU-1 for the prediction
+### YOUR CODE CALLING THE HELPER ABOVE GOES HERE ###
+# bleu1 = 
+```
