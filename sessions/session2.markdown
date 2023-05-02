@@ -72,7 +72,7 @@ encodings = tokenizer(
 
 input_tokens = encodings[:,10:50]
 
-pretty_print(input_tokens)
+pretty_print(input_tokens[0])
 
 output = model(input_tokens, labels = input_tokens)
 print("Average NLL for wikipedia chunk", output.loss.item())
