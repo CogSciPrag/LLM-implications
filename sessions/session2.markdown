@@ -38,6 +38,14 @@ If you are a more advanced programmer and really want to run the code locally on
 
 Below is the code for loading the pretrained GPT-2 model and generating some sentence completions with it.
 
+Before running the code below on Colab, you will have execute the following code in a separate code cell in order to install the Huggingface package. Other package we will use come pre-installed on Colab.
+```python
+!pip install sentencepiece
+!pip install datasets
+!pip install transformers
+```
+Now you can copy and run the following.
+
 ```python
 # load packages
 from transformers import AutoTokenizer, AutoModelForCausalLM
@@ -136,8 +144,9 @@ The code below provides the negative log likelihood of the first 50 tokens in th
 ```python
 # import Huggingface package managing open source datasets
 from datasets import load_dataset
+import numpy as np
 
-test = load_dataset("wikitext", split="test")
+test = load_dataset("wikitext", 'wikitext-2-raw-v1', split="test")
 encodings = tokenizer(
     "\n\n".join(test["text"]), 
     return_tensors="pt",
@@ -197,7 +206,7 @@ def compute_bleu(prediction, target, n):
     """
     score = bleu_score(
         [prediction.split()], 
-        [ target.split()], 
+        [[target.split()]], 
         max_n=n, 
         weights = [1/n] * n,
     )
@@ -215,11 +224,13 @@ encoding_de = tokenizer_t5(
 ).input_ids
 
 # predict with model
-predicted_de = model_t5(encoding_en)
+predicted_de = model_t5.generate(encoding_en)
+
+print("Predicted translation: ", predicted_decoded_de)
 
 # decode the prediction
-predicted_decoded_de = tokenizer_t5.batch_decode(
-    predicted_de,
+predicted_decoded_de = tokenizer_t5.decode(
+    predicted_de[0],
     skip_special_tokens=True,
 )
 
