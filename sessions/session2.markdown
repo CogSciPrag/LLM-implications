@@ -20,7 +20,9 @@ That is, this session is meant to provide an overview of concepts crucial for a 
 
 ### Slides
 
-TBD.
+<object data="slides/01-introduction.pdf" type="application/pdf" width="100%" height="500px">
+      <p>Unable to display PDF file. <a href="slides/02-core-LLMs.pdf">Download</a> instead.</p>
+    </object>
 
 ### Hands-on exercises
 
