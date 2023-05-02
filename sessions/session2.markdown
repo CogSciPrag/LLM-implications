@@ -26,58 +26,19 @@ TBD.
 
 Below, you can find code for trying out pretrained models via the [Huggingface library](https://huggingface.co/) yourself. Additionally, there are snippets for looking at the effect of a critical moving part of LMs -- the decoding scheme -- in action.
 
+Please find the Colab notebook containing code for the first two sections [here](https://colab.research.google.com/github/michael-franke/npNLG/blob/main/neural_pragmatic_nlg/06-LSTMs/06d-decoding-GPT2.ipynb).
+
 #### Running the code
 
-In order to explore, you don't have to write a lot of code by yourself -- you can use many handy functions allowing you to download models, tokenize text (i.e., map natural language (sub)words to numbers which a machine can use for computations), sample predictions of the pretrained models. To try different decoding schemes, you will only have to take a look at the documentation and change some parameters of the functions. So even if you have never written code for using LLMs before we encourage you to take on the challenge and try running the code and doing the exercises below.
+In order to explore, you don't have to write a lot of code by yourself -- you can use many handy functions provided by the library allowing you to download models, tokenize text (i.e., map natural language (sub)words to numbers which a machine can use for computations), sample predictions of the pretrained models. To try different decoding schemes, you will only have to take a look at the different parameters of the generation functions. So even if you have never written code for using LLMs before we encourage you to take on the challenge and try running the code and doing the exercises below.
 
-We strongly encourage you to use Colab (a Jupyter server hosted by Google) to create a Jupyter notebook and paste the code below into it. The only requirement fot that is a Google account. You can find instructions on how to use Colab notebooks [here](https://colab.research.google.com/).
+We strongly encourage you to use the **Colab notebook provided above** (Colab is a Jupyter server hosted by Google), run the provided code and paste the additional code below into it. The only requirement fot that is a Google account. You can find instructions on how to use Colab notebooks [here](https://colab.research.google.com/).
 
 If you are a more advanced programmer and really want to run the code locally on your machine, we strongly encourage you to create an environment (e.g., with Conda) before you install any dependencies, and please keep in mind that pretrained language model weights might take up quite a bit of space on your hard drive or might require high RAM for prediction.
 
 #### Generating predictions from models
 
-Below is the code for loading the pretrained GPT-2 model and generating some sentence completions with it.
-
-Before running the code below on Colab, you will have execute the following code in a separate code cell in order to install the Huggingface package. Other package we will use come pre-installed on Colab.
-```python
-!pip install sentencepiece
-!pip install datasets
-!pip install transformers
-```
-Now you can copy and run the following.
-
-```python
-# load packages
-from transformers import AutoTokenizer, AutoModelForCausalLM
-
-# load pretrained tokenizer and model
-tokenizer = AutoTokenizer.from_pretrained("gpt2")
-model = AutoModelForCausalLM.from_pretrained("gpt2")
-
-# define input text
-text = "Once upon a time a quick fox "
-
-# tokenize input text
-text_encoded = tokenizer(
-    text,
-    return_tensors="pt",
-).input_ids
-
-# generate continuation with greedy decoding
-output = model.generate(
-    text_encoded,
-    max_new_tokens=128,
-)
-
-# decode output tokens from IDs to words
-output_text = tokenizer.batch_decode(
-    output,
-    skip_special_tokens=True,
-)
-
-# display results
-print("Predicted text:\n\n ", output_text)
-```
+The notebook contains code for loading the pretrained GPT-2 model and generating some sentence completions with it. The notebook already contains some exercises; if you'd like to challenge yourself a bit more, you can also think about the following exercises. 
 
 **Exercise**
 
@@ -88,54 +49,11 @@ Besides core language models which generate text continuations (i.e., simply pre
 
 #### Comparing decoding schemes
 
-One import aspect which determines the quality of the text produced by language models is the *decoding strategy*. The code below shows how to use several popular decoding schemes with GPT-2. Of course, they can also be applied to other generative language models. 
-It is taken from [this](https://michael-franke.github.io/npNLG/06-LSTMs/06d-decoding-GPT2.html) chapter of Michael's webbook on natural language generation. 
-
-**Exercise**
-
-1. Compare the resulting output for the input above based on different decoding schemes. Do you observe differences? Why do you think this happens? What are possible disadvantages of the different decoding schemes? 
-
-```python
-# helper function for decoding the prediction and printing
-def pretty_print(s):
-    print("Output:\n" + 100 * '-')
-    print(tokenizer.batch_decode(
-        s, 
-        skip_special_tokens=True)
-    )
-
-# use function 'model.generate' from `transformer` package to sample by
-greedy_output = model.generate(
-    text_encoded,     # context to continue
-    max_length=50,    # return maximally 50 words (including the input given)
-)
-
-pretty_print(greedy_output)
-
-# In a pure sampling approach, we just sample each next word with exactly the probability assigned to it by the LM.
-sample_output = model.generate(
-    text_encoded,        # context to continue
-    do_sample=True,   # use sampling (not beam search (see below))
-    max_length=50,    # return maximally 50 words (including the input given)
-    top_k=0           # just sample one word
-)
-
-pretty_print(sample_output)
-
-# In simplified terms, beam search is a parallel search procedure that keeps a number of path probabilities open at each choice point, dropping the least likely as we go along.
-beam_output = model.generate(
-    text_encoded, 
-    max_length=50, 
-    num_beams=5, 
-    early_stopping=True
-) 
-
-pretty_print(beam_output)
-```
+One import aspect which determines the quality of the text produced by language models is the *decoding strategy*. The notebook shows how to use several popular decoding schemes with GPT-2. Of course, they can also be applied to other generative language models. 
 
 #### Loading evaluations
 
-In the lecture we discussed different metrics and benchmarks for evaluating language models. Below you can find the code for loading a Wikipedia-based test dataset frequently used to compute the test performance of models. 
+In the lecture we discussed different metrics and benchmarks for evaluating language models. Below you can find the code for loading a Wikipedia-based test dataset frequently used to compute the test performance of models. Please **paste the code below into the Colab notebook** in order to try it out.
 
 **Exercise**
 
