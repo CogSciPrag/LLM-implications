@@ -29,9 +29,9 @@ Equipped with a conceptual understanding of how LLMs are built, we will start al
 
 ### Slides
 
-<!-- <object data="slides/03-RLHF-LLM-architectures.pdf" type="application/pdf" width="100%" height="500px"> 
+<object data="slides/03-RLHF-LLM-architectures.pdf" type="application/pdf" width="100%" height="500px"> 
       <p>Unable to display PDF file. <a href="slides/03-RLHF-LLM-architectures.pdf">Download</a> instead.</p>
-    </object> -->
+    </object>
 
 Links to materials mentioned in this session can be found [here](#bib).
 
