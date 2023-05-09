@@ -7,11 +7,11 @@ from transformers import AutoModelForSeq2SeqLM, AutoTokenizer, GPT2LMHeadModel, 
 # load the tokenizer & model for T5 & GPT2
 tokenizer_T5 = AutoTokenizer.from_pretrained("google/flan-t5-base")
 model_T5     = AutoModelForSeq2SeqLM.from_pretrained("google/flan-t5-base",
-                                                     pad_token_id=tokenizer.eos_token_id)
+                                                     pad_token_id=tokenizer_T5.eos_token_id)
 
 tokenizer_GPT2 = GPT2Tokenizer.from_pretrained("gpt2")
 model_GPT2     = GPT2LMHeadModel.from_pretrained("gpt2",
-                                                 pad_token_id=tokenizer.eos_token_id)
+                                                 pad_token_id=tokenizer_GPT2.eos_token_id)
 
 # convenience function for nicer output
 def pretty_print(s):
