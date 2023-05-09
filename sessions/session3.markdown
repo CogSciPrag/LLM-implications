@@ -37,7 +37,7 @@ Links to materials mentioned in this session can be found [here](#bib).
 
 ### Code
 
-TBD.
+[Python script](code/03-FLAN-T5-generations.py) from the lecture for GPT-2 and FLAN T5 generations.
 
 <h3 id="rl-resources">Additional resources on RL</h3>
 
