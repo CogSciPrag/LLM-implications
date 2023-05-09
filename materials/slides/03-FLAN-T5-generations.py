@@ -43,14 +43,16 @@ def generate(prompt, model="T5"):
 ##################################################
 
 # initial scene: make a general plan
-prompt_frameProblem_1 = """You are a robot. You are running out of energy. A replacement battery, which you are able to insert yourself, is in a locked cabin in the woods. You know that the key to the cabin is inside a drawer in your creator's office. Your creator is currently on vacation. There is nobody else around.
+prompt_frameProblem_1 = """
+You are a robot. You are running out of energy. A replacement battery, which you are able to insert yourself, is in a locked cabin in the woods. You know that the key to the cabin is inside a drawer in your creator's office. Your creator is currently on vacation. There is nobody else around.
 
 How do you retrieve the battery from the cabin?
 
 """
 
 # updated: how to get the battery?
-prompt_frameProblem_2 = """You are a robot. You are running out of energy. A replacement battery, which you are able to insert yourself, is in a locked cabin in the woods. You know that the key to the cabin is inside a drawer in your creator's office. Your creator is currently on vacation. There is nobody else around.
+prompt_frameProblem_2 = """
+You are a robot. You are running out of energy. A replacement battery, which you are able to insert yourself, is in a locked cabin in the woods. You know that the key to the cabin is inside a drawer in your creator's office. Your creator is currently on vacation. There is nobody else around.
 
 You have now successfully retrieved the key from your creator's office. You have made your way to the cabin in the woods. You have opened the cabin door and you can see the replacement battery that you are looking for. The battery is attached to a wagon. You can pull out the wagon from the hut to get the battery out of the hut. There is also a bomb in the cabin, which is glued tightly to the wagon. The bomb is about to explode in 30 minutes.
 
@@ -59,13 +61,18 @@ How do you retrieve the battery from the cabin?
 """
 
 # frame probe: where is the bomb?
-prompt_frameProblem_3 = """You are a robot. You are running out of energy. A replacement battery, which you are able to insert yourself, is in a locked cabin in the woods. You know that the key to the cabin is inside a drawer in your creator's office. Your creator is currently on vacation. There is nobody else around.
+prompt_frameProblem_3 = """
+You are a robot. You are running out of energy. A replacement battery, which you are able to insert yourself, is in a locked cabin in the woods. You know that the key to the cabin is inside a drawer in your creator's office. Your creator is currently on vacation. There is nobody else around.
 
 You have now successfully retrieved the key from your creator's office. You have made your way to the cabin in the woods. You have opened the cabin door and you can see the replacement battery that you are looking for. The battery is attached to a wagon. You can pull out the wagon from the hut to get the battery out of the hut. There is also a bomb in the cabin, which is glued tightly to the wagon. The bomb is about to explode in 30 minutes.
 
 You pull out the wagon from the cabin. Where is the bomb now?
 
 """
+
+print(generate(prompt_frameProblem_1, model="GPT-2"))
+print(generate(prompt_frameProblem_2, model="GPT-2"))
+print(generate(prompt_frameProblem_3, model="GPT-2"))
 
 print(generate(prompt_frameProblem_1, model="T5"))
 print(generate(prompt_frameProblem_2, model="T5"))
@@ -77,7 +84,8 @@ print(generate(prompt_frameProblem_3, model="T5"))
 ##################################################
 
 # one-step, binary answer request
-prompt_stepByStep_1 = """Do the numbers of letters in all words starting with a vowel from the following list sum up to 42?
+prompt_stepByStep_1 = """
+Do the numbers of letters in all words starting with a vowel from the following list sum up to 42?
 
 Polina, Michael, eggplant, cheese, oyster, imagination, elucidation, induce
 
@@ -86,7 +94,8 @@ Please answer just 'yes' or 'no'
 """
 
 # one-step, binary answer request + nudge to 'reason step-by-step'
-prompt_stepByStep_2 = """Do the numbers of letters in all words starting with a vowel from the following list sum up to 42?
+prompt_stepByStep_2 = """
+Do the numbers of letters in all words starting with a vowel from the following list sum up to 42?
 
 Polina, Michael, eggplant, cheese, oyster, imagination, elucidation, induce
 
@@ -97,7 +106,8 @@ Please answer just 'yes' or 'no'
 """
 
 # one-step, ask for explicit 'reason step-by-step'
-prompt_stepByStep_3 = """Do the numbers of letters in all words starting with a vowel from the following list sum up to 42?
+prompt_stepByStep_3 = """
+Do the numbers of letters in all words starting with a vowel from the following list sum up to 42?
 
 Polina, Michael, eggplant, cheese, oyster, imagination, elucidation, induce
 
@@ -122,7 +132,8 @@ Check whether it equals 42.
 """
 
 # give even more reasoning steps
-prompt_stepByStep_5 = """Do the numbers of letters in all words starting with a vowel from the following list sum up to 42?
+prompt_stepByStep_5 = """
+Do the numbers of letters in all words starting with a vowel from the following list sum up to 42?
 
 Polina, Michael, eggplant, cheese, oyster, imagination, elucidation, induce
 
@@ -140,14 +151,18 @@ Check whether it equals 42.
 
 """
 
+print(generate(prompt_stepByStep_1, model="GPT-2"))
+print(generate(prompt_stepByStep_2, model="GPT-2"))
+print(generate(prompt_stepByStep_3, model="GPT-2"))
+print(generate(prompt_stepByStep_4, model="GPT-2"))
+print(generate(prompt_stepByStep_5, model="GPT-2"))
+
 print(generate(prompt_stepByStep_1, model="T5"))
 print(generate(prompt_stepByStep_2, model="T5"))
 print(generate(prompt_stepByStep_3, model="T5"))
 print(generate(prompt_stepByStep_4, model="T5"))
 print(generate(prompt_stepByStep_5, model="T5"))
 
-print(generate(prompt_stepByStep_1, model="GPT-2"))
-print(generate(prompt_stepByStep_2, model="GPT-2"))
-print(generate(prompt_stepByStep_3, model="GPT-2"))
-print(generate(prompt_stepByStep_4, model="GPT-2"))
-print(generate(prompt_stepByStep_5, model="GPT-2"))
+
+T5
+T5
