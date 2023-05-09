@@ -162,7 +162,3 @@ print(generate(prompt_stepByStep_2, model="T5"))
 print(generate(prompt_stepByStep_3, model="T5"))
 print(generate(prompt_stepByStep_4, model="T5"))
 print(generate(prompt_stepByStep_5, model="T5"))
-
-
-T5
-T5
