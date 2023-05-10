@@ -50,7 +50,11 @@ These resources are a short suggested selection among infinitely many (possibly 
 * [*the* textbook about RL (detailed and in-depth)](https://www.andrew.cmu.edu/course/10-703/textbook/BartoSutton.pdf)
 * [high-level blogpost about the development of the field](https://towardsdatascience.com/reinforcement-learning-fda8ff535bb6)
 
-<h3 id="bib">Materials used in the session</h3>
+<h3 id="prompting-resources">Web-book on prompt engineering</h3>
+
+* [Prompt Engineering Guide](https://www.promptingguide.ai/)
+
+<h3 id="bib">Further materials used in the session</h3>
 
 Below are links to papers which were referenced in the lecture but weren't linked to:
 
