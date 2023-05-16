@@ -17,7 +17,7 @@ grammaticality_test_cases = pd.read_csv("data/grammaticality_tests.csv")
 def get_surprisal(
         masked_sequence, 
         full_sequence,
-        preface = '', 
+        preface = 'start ', 
         model_name =  "text-davinci-003", 
         mask_token = "[MASK]",
         return_region_surprisal=True,
@@ -55,20 +55,20 @@ def get_surprisal(
                 logprobs    = 0, 
                 echo        = True,
             ) 
+        pprint(response)
     else:
         raise ValueError("GPT-4 and turbo cannot return log probs!")
 
     text_offsets = response.choices[0]['logprobs']['text_offset']
     # allow to use few shot examples
     if preface != '':
-        cutIndex = text_offsets.index(max(i for i in text_offsets if i < len(preface))) + 1
+        cutIndex = text_offsets.index(max(i for i in text_offsets if i <= len(preface))) 
         endIndex = response.usage.total_tokens
     else:
         cutIndex = 0
         endIndex = len(response.choices[0]["logprobs"]["tokens"])
     answerTokens = response.choices[0]["logprobs"]["tokens"][cutIndex:endIndex]
     answerTokenLogProbs = response.choices[0]["logprobs"]["token_logprobs"][cutIndex:endIndex] 
-    
     # retrieve critical region surprisal
     if return_region_surprisal:
         # get target region surprisal
@@ -81,7 +81,6 @@ def get_surprisal(
                     ]
         # get target region
         masked_words = [full_sequence.replace(".", " .").split(" ")[mask_i] for mask_i in mask_ind]
-        print("Masked word ", masked_words)
         # get tokens corresponding to the target region
         # and handle subword tokenization of GPT
         mask_log_probs = []
@@ -91,8 +90,8 @@ def get_surprisal(
                 if t.strip() == masked_word.strip():
                     mask_log_prob = answerTokenLogProbs[i]
                     mask_log_probs.append(mask_log_prob)
-                elif t in masked_word:
-                    if t + answerTokens[i+1] in masked_word:
+                elif t.strip() in masked_word:
+                    if t.strip() + answerTokens[i+1] in masked_word:
                         mask_log_prob = answerTokenLogProbs[i]
                         mask_log_probs.append(mask_log_prob)
                 else:
@@ -101,8 +100,7 @@ def get_surprisal(
         mask_surprisals = [-m for m in mask_log_probs]
     # get full sentence surprisal
     else:
-        # cut off first token because API returns Null log P for it
-        answerTokenLogProbs = answerTokenLogProbs[1:]
+        answerTokenLogProbs = answerTokenLogProbs
         mask_surprisals = [- np.mean(
             np.asarray(answerTokenLogProbs)
         )]
