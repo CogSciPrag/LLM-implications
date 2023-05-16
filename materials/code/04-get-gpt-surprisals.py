@@ -8,15 +8,11 @@ import argparse
 import json
 from pprint import pprint
 # set openAI key in separate .env file w/ content
-load_dotenv("../../../../06_SIFD/griceChain/.env")
+load_dotenv() 
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 # read test cases with single token prediction
 grammaticality_test_cases = pd.read_csv("data/grammaticality_tests.csv")
-
-oneShotExample = '''EXAMPLE: '''
-
-
 
 def get_surprisal(
         masked_sequence, 
@@ -49,7 +45,7 @@ def get_surprisal(
     mask_surprisals: list
         Surprisal of the critical region or average for full sentence.
     """
-    # TODO check if sequence is going to be single string or list
+    # get log probs for sequence
     if model_name not in ["gpt-3.5-turbo", "gpt-4"]:
         response = openai.Completion.create(
                 engine      = model_name, 
@@ -135,22 +131,26 @@ def compare_surprisals(row, return_region_surprisal):
         row["grammatical_sentence"],
         return_region_surprisal=return_region_surprisal,
     )
+    print(f"--- Surprisal of grammatical sentence {row['grammatical_sentence']}: {grammatical_surprisal} ---\n\n")
     # get surprisal of ungrammatical sentence
     ungrammatical_surprisal = get_surprisal(
         row["masked_sentence"],
         row["ungrammatical_sentence"],
         return_region_surprisal=return_region_surprisal,
     )
+    print(f"--- Surprisal of ungrammatical sentence {row['ungrammatical_sentence']}: {ungrammatical_surprisal} ---\n\n")
+    
     # check LM accuracy (in terms of surprisal)
     is_grammatical = all([g < u for g, u in zip(grammatical_surprisal, ungrammatical_surprisal)])
     return is_grammatical
 
+print("Gramamticality test cases: \n\n", grammaticality_test_cases.head(10))
 # call surprisal computation for single test cases from the slides
 print("--- Agreement test case --- \n Is grammatical sentence less surprising than ungrammatical one?", 
-      compare_surprisals(grammaticality_test_cases.iloc[0], return_region_surprisal=False))
+      compare_surprisals(grammaticality_test_cases.iloc[0], return_region_surprisal=False), "\n\n")
 
 print("--- Reflexive test case --- \n Is grammatical sentence less surprising than ungrammatical one?", 
-      compare_surprisals(grammaticality_test_cases.iloc[11], return_region_surprisal=False))
+      compare_surprisals(grammaticality_test_cases.iloc[11], return_region_surprisal=False), "\n\n")
 
 
 def main():
