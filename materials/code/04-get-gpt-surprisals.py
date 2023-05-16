@@ -100,7 +100,6 @@ def get_surprisal(
         mask_surprisals = [-m for m in mask_log_probs]
     # get full sentence surprisal
     else:
-        answerTokenLogProbs = answerTokenLogProbs
         mask_surprisals = [- np.mean(
             np.asarray(answerTokenLogProbs)
         )]

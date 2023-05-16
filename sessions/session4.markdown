@@ -33,3 +33,5 @@ Prepared reading materials for the group assignment for the session can be found
 ### Code
 
 [Python script](code/04-get-gpt-surprisals.py) from the lecture for getting surprisals from GPT-3.
+
+[Grammaticality test dataset](code/data/grammaticality_tests.csv) discussed in the lecture for testing the models.
