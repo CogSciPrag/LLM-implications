@@ -4,3 +4,4 @@ _site
 .jekyll-metadata
 vendor
 /materials/.DS_Store
+/materials/code/.env
