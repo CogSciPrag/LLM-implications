@@ -17,6 +17,9 @@ load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 class RandomExampleSelector(BaseExampleSelector):
+    """
+    Convenience class for loading few-shot examples from a file.
+    """
     
     def __init__(self, examples: pd.DataFrame, num_facts=1):
         self.examples = examples
@@ -45,35 +48,44 @@ class RandomExampleSelector(BaseExampleSelector):
 
 def transform_fct(inputs: dict) -> list:
     """
-    Transform raw output of description sampler into a list of dictionaries,
-    each of which can be used as input to the semantic parser.
-    """
-
-    print("Executing transform fct")
-    print(inputs["goals"])
-    if "\n" in inputs["goals"]:
-        utterances = [
-            re.sub("^-|(\d)+", "", u).strip()  
-            for u 
-            in inputs["goals"].split("\n") 
-            if len(u) > 3
-        ]
-    else:
-        utterances = [
-            re.sub("^-|(\d)+", "", u).strip().replace("\n", "") 
-            for u 
-            in inputs["goals"].split(".") 
-            if len(u) > 3
-        ]
-    print("Cleaned utterances ", utterances)
-    return {"goals_list": utterances}
+    Transform raw output of goal proposer into list of strings.
+    Parameters:
+    -----------
+    inputs: dict
+        Dict with the key "goals" containing the proposed facts.
+    Returns:
+    --------
+    goals: dict
+        Dict with they key "goals_list" with a list of possible questioner goals.
+    """    
+    goals = [
+        re.sub("^-|(\d)+", "", u).strip().replace("\n", "") 
+        for u 
+        in inputs["goals"].split(",") 
+        if len(u) > 3
+    ]
+    print(inputs["goals"].split(","))
+    print("Cleraned goals list: ", goals)
+    return {"goals_list": goals}
 
 def transform_utts_goals_fct(inputs):
-    print("Transform goals and utts ", inputs)
-
+    """
+    Transform raw output of utterance proposer into a list of dictionaries,
+    with form utterance X goal,
+    each of which can be used as input to the relevance evaluator.
+    Parameters:
+    -----------
+    inputs: dict
+        Dict with the key "goals" and "utterances" containing the proposed alternatives.
+    Returns:
+    --------
+    goals_utterances_dict: list[dict]
+        Dict with they key "goals_utterances_dict" with a list of possible combinations in dict form.
+    """
+    
     utterances = inputs["utterances"].split("\n")
     utterances = [u for u in utterances if len(u) > 3]
-    print("utterances only ", utterances)
+
     goals_utterances_list = []
     for goal in inputs["goals_list"]:
         for u in utterances:
@@ -81,19 +93,37 @@ def transform_utts_goals_fct(inputs):
                 "goal": goal,
                 "sentence": u,
             })   
-    print("goals_utterances_list: ", goals_utterances_list)
     return {"goals_utterances_dict": goals_utterances_list}
 
 def sample_knowledge(model, temperature, num_facts=1, **kwargs):
     """
     Function for retrieving knowledge statements
     for generated knowledge prompting.
+    Parameters:
+    -----------
+    model: str
+        Name of model to use.
+    temperature: float
+        Temperature for sampling.
+    num_facts: int
+        Number of alternative goals to sample.
+    Returns:
+    --------
+    goals_chain: LLMChain
+        Chain for sampling questioner goals. 
+    transform_chain: TransformChain
+        Chain for parsing the outputs of the goals chain into list of strings.
+    utterance_chain: LLMChain
+        Chain for sampling utterances the answerer could consider. 
+    transform_utterances_goals_chain: TransformChain
+        Chain for parsing the outputs of the utterance chain into a dict with form utterance X goal.
+
     """
     # read in instructions
     instructions_text = f"""Instructions:
     You will be given a context in which a person asks a question. 
-    Your task is to generate {str(num_facts)} possible goals the person might have in mind when asking the question.
-    Provide the goals in a bullet point list.
+    Your task is to generate {str(num_facts)} different goals plausible in the given context that the person might have in mind when asking the question.
+    Provide the goals in a comma separated list.
 
     Examples: 
     """
@@ -150,7 +180,8 @@ def sample_knowledge(model, temperature, num_facts=1, **kwargs):
     
     # define chain for sampling utterances
     instructions_utterances = f"""Instructions:
-    You will be given a context about several objects. Imagine another person asks you what you have. Generate three well formed sentences telling another person about one of the available objects.
+    You will be given a context about several objects. Imagine another person asks you what you have. 
+    Generate three well formed sentences telling another person about one of the available objects.
     """
     utterance_template = instructions_utterances + """
     Context: {context_utterance}
@@ -178,8 +209,22 @@ def sample_knowledge(model, temperature, num_facts=1, **kwargs):
     return goals_chain, transform_chain, utterance_chain, transform_utterances_goals_chain
 
 def relevance_evaluator(input_dicts, model, temperature, **kwargs):
-
-    pprint(input_dicts)
+    """
+    Evaluator function for retrieving relevance of utterances for goals.
+    Parameters:
+    -----------
+    input_dicts: list[dict]
+        List of dictionaries with keys "goal" and "sentence".
+    model: str
+        Name of model to use.
+    temperature: float
+        Temperature for sampling.
+    Returns:
+    --------
+    scores: list[str]
+        List of scores for each utterance-goal pair. 
+    """
+    
      # define chain for retrieving relevance of each utterance for each goal
     instructions_relevance = """Instructions:
     You will be given a person's goal and a sentence they might hear. On a scale between 0 and 10, how helpful is the sentence for the person to achieve their goal?
@@ -190,7 +235,7 @@ def relevance_evaluator(input_dicts, model, temperature, **kwargs):
     )
     scores = []
     for d in input_dicts:
-        pprint(d)
+        
         relevance_template = instructions_relevance + """
         Goal: {goal}
         Sentence: {sentence}
@@ -232,9 +277,16 @@ if __name__ == "__main__":
         output_variables=["goals_utterances_dict"],
         verbose=True
     )
-    r = overall_chain(inputs={"context": " A woman walks into a gym and asks: Do you offer yoga classes?" , 
-                               "context_utterance": "You work at the reception desk of a gym. The gym currently offers a pilates class, zumba classes, and kickboxing."})
-    print("------ FINAL OUTPUTS ------ ", r)
+    question_context = "A woman walks into a gym and asks: Do you offer yoga classes?" 
+    utterance_context = "You work at the reception desk of a gym. The gym currently offers a pilates class, zumba classes, and kickboxing."
+    r = overall_chain(inputs={"context": question_context, 
+                               "context_utterance": utterance_context})
+    
+    print(f"---- Question: {question_context}\n\n", 
+          f"---- Context: {utterance_context}\n\n", 
+          "------ Predicted goal X utterance pairs ------ \n\n", 
+          r["goals_utterances_dict"])
+    
     scores = relevance_evaluator(r["goals_utterances_dict"], "text-davinci-003", 0.1)
-    print("------ FINAL OUTPUTS ------ ", scores)
-   
+    print("------ Relevance scores ------ \n\n", scores)
+    pprint(r['goals_utterances_dict'])

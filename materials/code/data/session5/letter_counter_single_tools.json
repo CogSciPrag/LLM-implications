@@ -8,10 +8,6 @@
 		"content": "What are the numbers of letters in the words from the following list? Try reasoning step-by-step. Please list the numbers of letters."
 	},
 	{
-		"name": "sum-letters",
-		"content": "What is the sum of the following numbers? Try reasoning step-by-step. Please return the answer only."
-	},
-	{
 		"name": "compare-numbers",
 		"content": "Does the number equal 42? Please answer just 'yes' or 'no'"
 	}

@@ -18,7 +18,7 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 
 def tool_generator(tooldict, tool_template, tool_description, model):
     """
-    Produce a tool that can be used by an agent.
+    Produce a tool that can be used by an acrion agent.
 
     Parameters
     ----------
@@ -34,13 +34,17 @@ def tool_generator(tooldict, tool_template, tool_description, model):
     tool_description : str
         The string appended to all the tool's content
         in the tool's description that the agent sees.
+    model : LLM
+        The instantiated LLM that the tool uses.
+    
+    Returns:
+    --------
+    tool : Tool
+        The instantiated tool that can be used by an action agent.
     """
 
     tool_content = tooldict['content']
     tool_name = tooldict['name']
-
-    print("tool content: ", tool_content)
-    print("tool template ", tool_template)
 
     counting_prompt = PromptTemplate(
         template=tool_content+tool_template,
@@ -72,6 +76,20 @@ def tool_generator(tooldict, tool_template, tool_description, model):
 
 
 def run_letter_counting_agent(model, temperature):
+    """
+    Wrapper instantiating an action agent for counting letters in a list of words.
+
+    Parameters:
+    -----------
+    model : str
+        The name of the LLM model to be used.
+    temperature : float
+        The temperature for sampling from the LLM.
+    Returns:
+    --------
+    output: str
+        The final answer of the agent.
+    """
     # define Agent backbone
     llm = init_model(
         model,
@@ -80,7 +98,9 @@ def run_letter_counting_agent(model, temperature):
     # load utils for loading hand-crafted tests
     with open("data/session5/letter_counter_single_tools.json", 'r') as f:
         tests = json.load(f)
+    # input tempalte for all tools
     tool_template = "Words: {words}"
+    # general description of all tools
     tool_description = "The input is a list of words. The output is the reasoning process for determining the number of letters in all words starting with a vowel and the final answer."
     # construct tools
     # use a predefined math tool
@@ -96,7 +116,7 @@ def run_letter_counting_agent(model, temperature):
     ]
     print("Tools: ")
     pprint(tools)
-
+    # initialize action agent operating based on tool contents only
     agent = initialize_agent(
         tools, 
         llm, 
@@ -105,8 +125,11 @@ def run_letter_counting_agent(model, temperature):
     )
 
     words = """Polina, Michael, eggplant, cheese, oyster, imagination, elucidation, induce"""
-    agent_instructions = "Your task is to figure out whether the number of letters in all words starting with a vowel sum up to 42. You have some tools at your disposal to run some tests. If the tests give different results, you have to adjudicate between them and explain your choice. Think step by step and use all tools. At the end, leave a line the only says 'yes' if the words do have the number of letters in sum and 'no' otherwise."
+    agent_instructions = """Your task is to figure out whether the number of letters in all words starting with a vowel sum up to 42. 
+    You have some tools at your disposal to run some tests. If the tests give different results, you have to adjudicate between them and explain your choice. 
+    Think step by step and use all tools. At the end, leave a line the only says 'yes' if the words do have the number of letters in sum and 'no' otherwise."""
     
+    # run agent
     output = agent(agent_instructions + f"Words: {words}")
     print("--- Final output ---- ", output)
 

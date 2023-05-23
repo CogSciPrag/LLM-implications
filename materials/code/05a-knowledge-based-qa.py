@@ -76,7 +76,7 @@ def transform_fct(inputs: dict) -> list:
     return {"facts": facts}   
 
 
-def sample_knowledge(model_name, temperature, num_facts=1, **kwargs):
+def sample_knowledge(model_name, temperature, num_facts=2, **kwargs):
     """
     Function for retrieving knowledge statements
     for generated knowledge prompting.
@@ -118,12 +118,11 @@ def sample_knowledge(model_name, temperature, num_facts=1, **kwargs):
     example_selector = RandomExampleSelector(examples)
     selected_examples = example_selector.select_examples(num_examples=2)
     # instantiate the LLM backbone
-    if model_name == "text-davinci-003":
+    if model_name == "text-davinci-003" or model_name == "gpt-4":
         model = init_model(
             model_name=model_name, 
             temperature=temperature, 
-            logprobs=0,
-        )
+         )
     elif "flan-t5" in model_name:
         print("Initting HF model")
         model = init_model(
@@ -203,11 +202,13 @@ def answer_question(question, answers, knowledge, model_name, temperature, **kwa
             max_tokens=0,
             echo=True,
         )
-    elif "flan-t5" in model_name:
+    elif "flan-t5" in model_name or "gpt-4" in model_name:
         model = init_model(
-            model_name=model_name, 
-            output_scores=True,
-            max_new_tokens=1,
+            model_name="text-davinci-003", 
+            temperature=temperature, 
+            logprobs=0,
+            max_tokens=0,
+            echo=True,
         )
     else:
         raise ValueError(f"Model {model_name} cannot be used for knowledge based QA.")
@@ -231,17 +232,9 @@ def answer_question(question, answers, knowledge, model_name, temperature, **kwa
             "knowledge": knowledge,
             }]
         )
-        print("raw results ", result)
-        # retrieve log probs from LLM results object
-        if model_name == "text-davinci-003":        
-            log_p = result.generations[0][0].generation_info["logprobs"]["token_logprobs"]
-        elif "flan-t5" in model_name:
-            pass
-        else:
-            raise ValueError(f"Model {model_name} cannot be used for knowledge based QA.")
-
-        print("log p", log_p)
-
+        # retrieve log probs from LLM results object       
+        log_p = result.generations[0][0].generation_info["logprobs"]["token_logprobs"]
+        # cut off none probability of first token
         answer_logprobs.append(np.sum(np.array(log_p[1:])))
     # renormalize
     answer_logprobs = np.array(answer_logprobs)/np.sum(np.array(answer_logprobs))
@@ -264,7 +257,7 @@ if __name__ == "__main__":
         "four",
         "zero",
     ]
-    model_name = "text-davinci-003" # "google/flan-t5-base" #
+    model_name =  "gpt-4" #"google/flan-t5-xxl" #"text-davinci-003" #
     facts_chain, parser_chain = sample_knowledge(
         model_name,
         0.1,

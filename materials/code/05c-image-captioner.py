@@ -14,10 +14,23 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 
 
 def generate_captions(images=""):
+    """
+    Wrapper calling the image captioning end point of LangChain with default captioning model.
+    Uses a vector storage as an intermediate step for running the captioning task on the captioner ouput.
+
+    Parameters
+    ----------
+    images : list
+        List of image URLs (strings).
+    Returns:
+    --------
+    response: str
+        Formatted Response of the image captioning model.
+    """
     # load images and create captions
     # by default, the model Salesforce/blip-image-captioning-base is used
     loader = ImageCaptionLoader(path_images=images)
-    print("Raw image caption documents: \n", loader.load())
+    # print("Raw image caption documents: \n", loader.load())
     # create vector store (chroma DB) with images + captions
     # by default, vectors (=embeddings) are created with OpenAI embeddings
     index = VectorstoreIndexCreator().from_loaders([loader])
