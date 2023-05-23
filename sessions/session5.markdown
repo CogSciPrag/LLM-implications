@@ -34,14 +34,28 @@ The materials for the hands-on part are available in the Code section below. The
 
 ### Code
 
-[Python script](code/04-get-gpt-surprisals.py)...
+Below, the links to the single scripts used in the hands-on LangChain demo are listed.
 
-[Data](code/data/grammaticality_tests.csv)...
-
+* LangChain scripts
+  * [Knowledge-based QA (aaproximate) reimplemention (of Liu et al., 2022)](code/5a-knowledge-based-qa.py)
+    * showcases usage of prompts, templates, transformations, retrieval of generation information from models and predefined computations based on LLM output results
+  * [Explanatory model of QA](code/05b-qa-model.py)
+    * showcases usage of a Chain, generation of alternatives and evaluations for a cognitive model
+  * [Image captioner chain](code/05c-image-captioner.py)
+    * showcases extension of LLM based chains to other I/O, storage
+  * [Letter counting agent](code/05d-counting-agent.py)
+    * showcases an action agent using different tools, including custom written tools
+  * [Utils](code/utils.py)
+    * necessary for running scripts above
+* Data for few-shot prompting & instructions
+  * [Few-shot prompting examples for fact generation for knowledge-based QA](code/data/knowledge_examples.csv)
+  * [Few-shot prompting examples for alternatives generation for the explanatory model](code/data/qa_examples.csv)
+  * [List of tools consisting of original prompts from session 3 for the agent](code/data/letter_counter_tools.json)
+  * [List of tools consisting of single step tools for the agent](code/data/letter_counter_single_tools.json)
+    * showcases multi-tool agent performance
 
 ### Further materials
 
-* LangChain tutorials
-* [Generative agents paper]()
-* [Tree chain]
-* 
+* [Official LangChain tutorials](https://python.langchain.com/en/latest/additional_resources/youtube.html)
+* [Generative agents paper](https://arxiv.org/abs/2304.03442)
+* [Tree-of-thought: a paper suggesting an alternative to CoT prompting for solving various decision making tasks](https://arxiv.org/abs/2305.10601)

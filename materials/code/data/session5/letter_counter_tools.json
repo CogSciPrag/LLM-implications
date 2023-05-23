@@ -1,0 +1,18 @@
+[
+	{
+		"name": "one-step",
+		"content": "Do the numbers of letters in all words starting with a vowel from the following list sum up to the same number as the product of 7 and 2**3-2? Please answer just 'yes' or 'no'"
+	},
+	{
+		"name": "zero-shot-step-by-step",
+		"content": "Do the numbers of letters in all words starting with a vowel from the following list sum up to the same number as the product of 7 and 2**3-2? Try reasoning step-by-step. Please answer just 'yes' or 'no'"
+	},
+	{
+		"name": "step-by-step",
+		"content": "Do the numbers of letters in all words starting with a vowel from the following list sum up to the same number as the product of 7 and 2**3-2? Try reasoning step-by-step to make sure to get the answer right. "
+	},
+	{
+		"name": "few-shot-step-by-step",
+		"content": "Do the numbers of letters in all words starting with a vowel from the following list sum up to the same number as the product of 7 and 2**3-2? Try reasoning step-by-step. Find all words which start with a vowel. Sum the numbers of letters. Compute the product. Check whether the two number are equal."
+	}
+]

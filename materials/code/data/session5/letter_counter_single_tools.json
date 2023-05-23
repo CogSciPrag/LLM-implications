@@ -1,0 +1,18 @@
+[
+	{
+		"name": "vowels",
+		"content": "Which words in the following list start with a vowel? Try reasoning step-by-step. Please list the words starting with a vowel."
+	},
+	{
+		"name": "count-letters",
+		"content": "What are the numbers of letters in the words from the following list? Try reasoning step-by-step. Please list the numbers of letters."
+	},
+	{
+		"name": "sum-letters",
+		"content": "What is the sum of the following numbers? Try reasoning step-by-step. Please return the answer only."
+	},
+	{
+		"name": "compare-numbers",
+		"content": "Does the number equal 42? Please answer just 'yes' or 'no'"
+	}
+]
