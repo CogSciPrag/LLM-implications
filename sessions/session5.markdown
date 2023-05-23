@@ -28,8 +28,8 @@ The materials for the hands-on part are available in the Code section below. The
 
 ### Slides
 
-<object data="slides/05-Philo-Cogsci-Models.pdf" type="application/pdf" width="100%" height="500px"> 
-    <p>Unable to display PDF file. <a href="slides/05-Philo-Cogsci-Models.pdf">Download</a> instead.</p>
+<object data="slides/05-Philo-CogSci-Models.pdf" type="application/pdf" width="100%" height="500px"> 
+    <p>Unable to display PDF file. <a href="slides/05-Philo-CogSci-Models.pdf">Download</a> instead.</p>
 </object>
 
 ### Code
