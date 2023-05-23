@@ -37,7 +37,7 @@ The materials for the hands-on part are available in the Code section below. The
 Below, the links to the single scripts used in the hands-on LangChain demo are listed.
 
 * LangChain scripts
-  * [Knowledge-based QA (aaproximate) reimplemention (of Liu et al., 2022)](code/5a-knowledge-based-qa.py)
+  * [Knowledge-based QA (aaproximate) reimplemention (of Liu et al., 2022)](code/05a-knowledge-based-qa.py)
     * showcases usage of prompts, templates, transformations, retrieval of generation information from models and predefined computations based on LLM output results
   * [Explanatory model of QA](code/05b-qa-model.py)
     * showcases usage of a Chain, generation of alternatives and evaluations for a cognitive model
