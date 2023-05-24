@@ -57,5 +57,6 @@ Below, the links to the single scripts used in the hands-on LangChain demo are l
 ### Further materials
 
 * [Official LangChain tutorials](https://python.langchain.com/en/latest/additional_resources/youtube.html)
+* [Medium blog post introduction to LangChain](https://towardsdatascience.com/getting-started-with-langchain-a-beginners-guide-to-building-llm-powered-applications-95fc8898732c)
 * [Generative agents paper](https://arxiv.org/abs/2304.03442)
 * [Tree-of-thought: a paper suggesting an alternative to CoT prompting for solving various decision making tasks](https://arxiv.org/abs/2305.10601)
