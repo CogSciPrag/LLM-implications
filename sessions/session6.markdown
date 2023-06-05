@@ -22,7 +22,13 @@ Therefore, it is difficult to define learning goals for this session. Rather, it
 
 ### Code 
 
-TBD (Huggingface API).
+For completing final project which include testing LLMs, we recommend using free opensource models hosted on the Huggingface Inference API and available via requests (i.e., you don't have download the model weights and run them on your machine).
+
+In particular, we suggest using Flan-T5 and the OpenAssistant models.
+
+An minimal script showing how to generate model responses from the API can be found [here](code/06-huggingface-api-access.py).
+
+(Note that you need to get a Huggingface API token. For that, create a free account on Huggingface, log in to your profile, navigate to user account settings and generate a new token. Save it in your project env file.)
 
 ### Further Materials
 
