@@ -257,7 +257,7 @@ if __name__ == "__main__":
         "four",
         "zero",
     ]
-    model_name =  "gpt-4" #"google/flan-t5-xxl" #"text-davinci-003" #
+    model_name =  "google/flan-t5-xxl" #"gpt-4" # #"text-davinci-003" #
     facts_chain, parser_chain = sample_knowledge(
         model_name,
         0.1,
