@@ -32,8 +32,8 @@ plugins:
   - jekyll-feed
 
 head_pages:
-  - overview.md
-  - materials.md
+  - 01_materials.md
+  - 00_overview.md
 # Exclude from processing.
 # The following items will not be processed, by default.
 # Any item listed under the `exclude:` key here will be automatically added to
