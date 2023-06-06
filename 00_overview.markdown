@@ -71,9 +71,11 @@ The following important dates should be kept in mind!
 As discussed in the slides for session 1, we suggest final projects that can roughly be grouped into the types "Build", "Test" and "Create".
 
 #### 1. Build a "generative agent"
-- reimplement a "generative agent" based on [Park et al. 2023 "generative agents"](https://arxiv.org/abs/2304.03442)
-- use LangChain to implement a memory, planning, retrieval, reflection and action selection
-- try to have two or more agents interact with each other in dialogue, e.g., in bargaining or argument
+- The paper on "generative agents" by [Park et al. 2023](https://arxiv.org/abs/2304.03442) uses LLMs in innovative ways to implement agents with "deep personal characteristics", goals (short- and long-term), planning flexibility and memory. While intended as non-player characters in immersive video games, this kind of modeling can also be used for research in computational social science simulations.
+- It would therefore be highly interesting to see how far we can reimplement and use such "generative agents", e.g., to have argumentative or persuasive discussions with each other. This project would try to do this. It would be rather technical, exploratory, open ended, but potentially very interesting.
+- So, in this project you would reimplement a "generative agent". You could use LangChain to implement a memory, planning, retrieval, reflection and action selection. Parts of this are already implemented in LangChain, but might be insufficiently documented or might just not work out-of-the-box. You would then have to improve on what is already there.
+- For some (simplified) agent implementation, you could try to have two or more agents interact with each other in dialogue, e.g., in bargaining or argument about a "hot topic". It would be interesting to see whether agents argue differently based on how we define their characters, and whether they actually "change their opinion" in some sense or another.
+- Much of this is open-ended, so you need to be prepared to anticipate many technical problems and be willing to make many pragmatic executive decisions (e.g., how to measure the opinion of a generative agent) as you go along.
 
 #### 2. Testing statistical world knowledge and pragmatic ability in LLMs
 - A recent paper by Rohde et al. ([2022](https://direct.mit.edu/opmi/article/doi/10.1162/opmi_a_00058/112494/This-Better-Be-Interesting-A-Speaker-s-Decision-to)) investigated human expectations of relevance of information via a simple behavioral experiment.
@@ -81,7 +83,7 @@ As discussed in the slides for session 1, we suggest final projects that can rou
 - The paper showed examples like this one to human participants (all material is included in the paper) and ask them to select one of two numbers as the missing piece in a test sentence:
   - *Context*: Liam is a man from the US. Liam lives down the street from Rebecca.
   - *Test sentence*: Rebecca thinks / announced to me that Liam has ... T-shirts.
-  - *Task question:* Choose the number which is more likely: 21 | 29
+  - *Task question:* Choose the number which is more likely: 21 vs 29
 - The paper found that human decision makers are sensitive to the context (thinks/ announced to me, etc.) in the sense that unsolicited communicative acts raise the expectations of newsworthiness, which in turn corresponds to statistical unexpectedness (a higher number than one would normally expect).
 - **Goal:** Test common LLMs for their ability to reproduced human decisions for experiments 1-3 from Rohde et al.'s paper.
   - Start with zero-shot prompting.
