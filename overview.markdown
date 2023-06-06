@@ -23,10 +23,11 @@ Below is the tentative schedule for the class. It might be subject to slight adj
 | 5          | May 23rd   | implications for CogSci                |
 | 6          | May 30th   | **holiday**                            |
 | 7          | Jun 6th    | implications for society               |
-| 8          | Jun 13th   | discussion & project launch            |
+| 8          | Jun 13th   | optional initial project consultation  |
+| 9          | Jun 20th   | project launch                         |
 | ...        | ...        | project work                           |
-| 9          | Jul 18th   | **intermediate project presentations** |
-| 10         | Sep 1st    | **submission deadline**                |
+| 10         | Jul 18th   | **intermediate project presentations** |
+| 11         | Sep 1st    | **submission deadline**                |
 
 ### Final projects
 

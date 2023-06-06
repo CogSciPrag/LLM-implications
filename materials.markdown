@@ -16,3 +16,5 @@ By clicking on the headers for each session, you will find the materials used in
 #### [Session 4 materials  (May 16th)]({{ site.baseurl }}{% link sessions/session4.markdown %})
 
 #### [Session 5 materials  (May 23rd)]({{ site.baseurl }}{% link sessions/session5.markdown %})
+
+#### [Session 6 materials  (June 6th)]({{ site.baseurl }}{% link sessions/session6.markdown %})
