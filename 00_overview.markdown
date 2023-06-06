@@ -91,18 +91,22 @@ As discussed in the slides for session 1, we suggest final projects that can rou
 - **Possible extension:** Use LangChain to create a "pragmatic reasoning agent" in which (what you think are) relevant Chain-of-Thought steps are individually carried out by different calls to the LLM.
 
 #### 3. Automatic creation of experimental materials
-- create new material similar to existing experimental or benchmark data
-  1. for testing LLM performance 
-     - use ToM paper(s) to create additional vignettes / items
-     - test original vs new material on ToM task (with otherwise identical prompts)
-  2. [maybe] Jennifer Hu et al.'s pragmatic ability testing data set
-     - data is indeed available
-  3. [maybe] argstrength: the corpus by [Carlile et al. (2018)](https://aclanthology.org/P18-1058.pdf) contains essays annotated with respect to argument components, argument persuasiveness scores, and attributes of argument components that impact an argument’s persuasiveness. 
+- With the advent of powerful generative language technology, we should ask ourselves: which tasks could we outsource to the machines; which ones should we (not) outsource?
+- One area that is relevant to science is the creation of text-based experimental material. Many studies in psychology, linguistics or elsewhere hinge on people reading text and giving (linguistic or other) responses. Often, we are interested in abstract phenomena and exemplify these phenomena with concrete *vignettes*. For example, if we are interested in dative alternation, we could use test sentences like:
+  + Alex gave Bo the book.
+  + Alex gave the book to Bo.
+  We could also use sentences with different names, items etc.
+- When creating items researchers in experimental psych. / linguistics may use implicit (unintentional) “aggressive design” by creating (text-based) stimulus material that is curated (e.g., by experimenter intuition) to promote the likelihood of the desired outcome (e.g., evidence for some hypothesis). Also, hand-crafting text-based stimuli can be time-consuming and effortful. AI-generated stimuli might help with both problems. But only, if we can be sure that AI-generated stimuli are valid substitutes for human-generated materials.
+- Therefore, in this project, you could look at ways of creating stimulus material for experimental studies, or benchmark data sets for LLM-testing, using automization via LLMs. The key to success are smart generation protocols (prompting, examples ...) and, most importantly, good ways of quality control of the generated stimuli / test materials.
+- You could create new material similar to existing experimental or benchmark data for testing LLM performance, e.g.,
+  1. a recent paper investigating LLMs [Theory-of-Mind reasoning capacity](https://arxiv.org/abs/2304.11490)
+  2. Hu et al.'s [pragmatic ability testing data set](https://arxiv.org/abs/2212.06801)
+  3. argstrength: the corpus by [Carlile et al. (2018)](https://aclanthology.org/P18-1058.pdf) contains essays annotated with respect to argument components, argument persuasiveness scores, and attributes of argument components that impact an argument’s persuasiveness. 
      - this might be interesting as materials for arg strength related projects
      - it is also interesting to investigate sensitivity of LLMs to argumentative strategies from the perspective of influencing the informational landscape.
      - the task might be to take the annotated passages of essays and try to vary them with respect to the quality of the single components of the argument. E.g., a passage might have an annotations with respect to persuasiveness (1 out of 4), eloquence (4 out of 6), relevance (5 out of 6). One could try to prompt LLMs in natural language to increase / decrese quality along single dimensions.
      - data can be found [here](https://www.hlt.utdallas.edu/~zixuan/EssayScoring/) (might time out first)
-  4. [maybe] Linguistic benchmark based chain-of-thought annotations (CoT in a loose sense)
+  4. linguistic benchmark based chain-of-thought annotations (CoT in a loose sense)
      - it would be interesting to have annotations of planning / reasoning steps accompanying solving "NLI"/"NLU" tasks from linguistic benchmarks, in a fashion similar to STREET
      - this would be helpful for fine-tuning various systems in the future, and interesting in order to understand what kinds of reasoning may be tested under the umbrella term "NLU"
      - example annotations to be produced for Swag (original task: select best sentence continuation out of 4) (tapping into 'world knowledge' about likely human actions, likely reasoning, likely conversations)
