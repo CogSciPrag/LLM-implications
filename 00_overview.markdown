@@ -34,7 +34,7 @@ In order to get credits for this course, you need to complete a final project in
 
 The following important dates should be kept in mind!
 
-- DATE X: communicate your chosen project & names of your group members to us via email to Polina
+- June 13th: communicate your chosen project & names of your group members to us via email to Polina
 - June 13th: [optionally] attend the consultation session and talk to us about your selected project and any open questions you have
 - June 20th: [obligatory] project launch: present your selected project in a 5 minute presentation
 - July 18th: [obligatory] intermediate project presentation
