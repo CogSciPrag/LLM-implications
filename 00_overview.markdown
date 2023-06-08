@@ -65,10 +65,11 @@ The following important dates should be kept in mind!
 
 - Feel free to use the dedicated Moodle Forum space for trying to find fellow group members.
 - Sign up for consultations during the four weeks between project launch and intermediate presentations on Moodle if you'd like to talk to us about your project progress.
+- Feel free to get in touch with us via email if you have any questions about the projects or would like to discuss your ideas.
 
 ### Project ideas
 
-As discussed in the slides for session 1, we suggest final projects that can roughly be grouped into the types "Build", "Test" and "Create".
+As discussed in the slides for session 1, we suggest final projects that can roughly be grouped into the types "Build", "Test" and "Create". For projects involving coding, you can use the Python scripts accompanying single sessions as starting points for your implementations (but, of course, you don't have to).
 
 #### 1. Build a "generative agent"
 - The paper on "generative agents" by [Park et al. 2023](https://arxiv.org/abs/2304.03442) uses LLMs in innovative ways to implement agents with "deep personal characteristics", goals (short- and long-term), planning flexibility and memory. While intended as non-player characters in immersive video games, this kind of modeling can also be used for research in computational social science simulations.

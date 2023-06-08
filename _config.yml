@@ -21,7 +21,7 @@
 title: LLMs implications
 email: polina.tsvilodub@uni-tuebingen.de, michael.franke@uni-tuebingen.de
 description: >- # this means to ignore newlines until "baseurl:"
-  Class website for the course "LLMs: implications for linguistics, cognitive science and society" taught by Michael Franke and Polina Tsvilodub in SS2023 at the University of Tuebingen.
+  Class website for the course "LLMs: implications for linguistics, cognitive science and society" taught by Michael Franke and Polina Tsvilodub in SS2023 at the University of Tübingen.
 baseurl: "/LLM-implications" # the subpath of your site, e.g. /blog
 url: "https://cogsciprag.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  CogSciPrag
