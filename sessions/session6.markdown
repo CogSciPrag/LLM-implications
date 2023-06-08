@@ -34,4 +34,3 @@ A minimal script showing how to generate model responses from the API can be fou
 
 - [Main source for many parts of the lecture: Bommasani et al., 2021. On the Opportunities and Risks of Foundation Models](https://arxiv.org/abs/2108.07258)
 - [A webbook on Alignment](https://aisafetyfundamentals.com/ai-alignment-curriculum)
-
