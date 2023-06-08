@@ -28,7 +28,7 @@ That is, this session is meant to provide an overview of concepts crucial for a 
 
 Below, you can find code for trying out pretrained models via the [Huggingface library](https://huggingface.co/) yourself. Additionally, there are snippets for looking at the effect of a critical moving part of LMs -- the decoding scheme -- in action.
 
-Please find the Colab notebook containing code for the first two sections [here](https://colab.research.google.com/github/michael-franke/npNLG/blob/main/neural_pragmatic_nlg/06-LSTMs/06d-decoding-GPT2.ipynb).
+Please find the **Colab notebook** containing code for the first two sections [here](https://colab.research.google.com/github/michael-franke/npNLG/blob/main/neural_pragmatic_nlg/06-LSTMs/06d-decoding-GPT2.ipynb).
 
 #### Running the code
 

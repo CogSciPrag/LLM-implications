@@ -12,9 +12,9 @@ permalink: /materials/session5
 
 Based on the discussions of vast capabilities of LLMs on various tasks in the previous classes, it might be tempting to say that LLMs *understand* the tasks and, more broadly, the world. But what does it really mean to **understand** something? Building on the question whether LLMs might be human-like models of language production, processing or learning, what is an **explanatory model**, and can LLMs count as such? These are far from trivial questions that have been discussed in fields like philosophy, cognitive science and philosophy of science for many years. 
 
-Therefore, in this session, we set out to discuss the implications of LLMs on (philosophy of) cognitive science, with a particular focus on understanding and explanations. First, key theoretical approaches to these concepts will be highlighted, and then we will see how different aspects of LLMs' understanding have been inspected in recent studies. Then, we will switch the point of view and look at LLMs from the perspective of usefully engineered tools which arguably contain rich contents mirroring many aspects of human language use. We will dive into the recently sky-rocketed framework *LangChain* and get ideas about how to make the most of LLMs' capabilities in creative ways, and how these could be embedded in scientific explanatory models.
+Therefore, in this session, we set out to discuss the implications of LLMs for (philosophy of) cognitive science, with a particular focus on understanding and explanations. First, key theoretical approaches to these concepts will be highlighted, and then we will see how different aspects of LLMs' understanding have been inspected in recent studies. Then, we will switch the point of view and look at LLMs from the perspective of usefully engineered tools which arguably contain rich contents mirroring many aspects of human language use. We will dive into the recently sky-rocketed framework *LangChain* and get ideas about how to make the most of LLMs' capabilities in creative ways, and how these could be embedded in scientific explanatory models.
 
-Therefore, learning goals for this session are:
+Therefore, the learning goals for this session are:
 * understand understanding
   * of language
   * of the world
@@ -38,11 +38,11 @@ Below, the links to the single scripts used in the hands-on LangChain demo are l
 
 * LangChain scripts
   * [Knowledge-based QA (approximate) reimplementation (of Liu et al., 2022)](code/05a-knowledge-based-qa.py)
-    * showcases usage of prompts, templates, transformations, retrieval of generation information from models and predefined computations based on LLM output results
+    * showcases usage of prompts, templates, transformations, retrieval of generated information from models and predefined computations based on LLM output results
   * [Explanatory model of QA](code/05b-qa-model.py)
     * showcases usage of a Chain, generation of alternatives and evaluations for a cognitive model
   * [Image captioner chain](code/05c-image-captioner.py)
-    * showcases extension of LLM based chains to other I/O, storage
+    * showcases extension of LLM based chains to other I/O, use of vector storages
   * [Letter counting agent](code/05d-counting-agent.py)
     * showcases an action agent using different tools, including custom written tools
   * [Utils](code/utils.py)
