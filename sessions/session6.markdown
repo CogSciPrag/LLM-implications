@@ -26,7 +26,8 @@ For completing final projects which include testing LLMs, we recommend using fre
 
 In particular, we suggest using Flan-T5 and the OpenAssistant models.
 
-A minimal script showing how to generate model responses from the API can be found [here](code/06-huggingface-api-access.py).
+Here is a minimal **script** showing how to generate model responses from the API: 
+* [Python script](code/06-huggingface-api-access.py).
 
 (Note that you need to get a Huggingface API token. For that, create a free account on Huggingface, log in to your profile, navigate to user account settings and generate a new token. Save it in your project env file.)
 
