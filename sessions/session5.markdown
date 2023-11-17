@@ -48,10 +48,10 @@ Below, the links to the single scripts used in the hands-on LangChain demo are l
   * [Utils](code/utils.py)
     * necessary for running scripts above
 * Data for few-shot prompting & instructions
-  * [Few-shot prompting examples for fact generation for knowledge-based QA](code/data/knowledge_examples.csv)
-  * [Few-shot prompting examples for alternatives generation for the explanatory model](code/data/qa_examples.csv)
-  * [List of tools consisting of original prompts from session 3 for the agent](code/data/letter_counter_tools.json)
-  * [List of tools consisting of single step tools for the agent](code/data/letter_counter_single_tools.json)
+  * [Few-shot prompting examples for fact generation for knowledge-based QA](code/data/session5/knowledge_examples.csv)
+  * [Few-shot prompting examples for alternatives generation for the explanatory model](code/data/session5/qa_examples.csv)
+  * [List of tools consisting of original prompts from session 3 for the agent](code/data/session5/letter_counter_tools.json)
+  * [List of tools consisting of single step tools for the agent](code/data/session5/letter_counter_single_tools.json)
     * showcases multi-tool agent performance
 
 ### Further materials
